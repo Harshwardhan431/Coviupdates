@@ -124,14 +124,6 @@ class _ApiState extends State<Api> {
                 ],
               ),
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 6,
-                    blurRadius: 15,
-                    offset: Offset(0, 3),
-                  )
-                ],
                 borderRadius: BorderRadius.circular(30),
                 color: Color(0xFF80D8FF),
               ),
