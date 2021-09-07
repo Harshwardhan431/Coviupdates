@@ -4,13 +4,14 @@ import 'package:http/http.dart' as http;
 import 'upiconstants.dart';
 import 'apidistrict.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 const urlState = "https://cdn-api.co-vin.in/api/v2/admin/location/states";
 String selected = 'Andaman and Nicobar Islands';
-int statekeypin=0;
+int statekeypin = 0;
 late String tempStateName;
 
 class Api extends StatefulWidget {
-  static String id='Api';
+  static String id = 'Api';
   const Api({Key? key}) : super(key: key);
 
   @override
@@ -24,11 +25,14 @@ class _ApiState extends State<Api> {
     print(response);
   }
 
-  List<DropdownMenuItem<String>> getDropDownState(){
-    List<DropdownMenuItem<String>> dropdownIteims=[];
-    for(int i=0;i<stateListText.length;i++){
-      String currentatate=stateListText[i];
-      var newIteim=DropdownMenuItem(child: Text(currentatate),value: currentatate,);
+  List<DropdownMenuItem<String>> getDropDownState() {
+    List<DropdownMenuItem<String>> dropdownIteims = [];
+    for (int i = 0; i < stateListText.length; i++) {
+      String currentatate = stateListText[i];
+      var newIteim = DropdownMenuItem(
+        child: Text(currentatate),
+        value: currentatate,
+      );
       dropdownIteims.add(newIteim);
     }
     return dropdownIteims;
@@ -112,11 +116,14 @@ class _ApiState extends State<Api> {
                         value: selected,
                         items: getDropDownState(),
                         onChanged: (value) {
-                          for(int i=1;i<38;i++){
-                            if (value==mapState[i]){statekeypin=i;break;}}
+                          for (int i = 1; i < 38; i++) {
+                            if (value == mapState[i]) {
+                              statekeypin = i;
+                              break;
+                            }
+                          }
                           selected = value.toString();
-                          tempStateName=selected;
-                        Navigator.pushNamed(context, ApiDistrict.id);
+                          tempStateName = selected;
                         },
                       ),
                     ),
@@ -137,23 +144,35 @@ class _ApiState extends State<Api> {
           ),
           Expanded(
             flex: 1,
-              child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color(0xFF4FC3F7),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 6,
-                  blurRadius: 15,
-                  offset: Offset(0, 3),
-                )
-              ],
+            child: Container(
+              child: InkWell(
+                child: Center(
+                  child: Text("SUBMIT",
+                  style: TextStyle(
+                    color: Color(0xFFF000000),
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                ),
+                onTap: () => Navigator.pushNamed(context, ApiDistrict.id),
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFFF44336),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 6,
+                    blurRadius: 15,
+                    offset: Offset(0, 3),
+                  )
+                ],
+              ),
+              width: double.infinity,
             ),
-          ))
+          ),
         ],
       ),
     );
   }
 }
-

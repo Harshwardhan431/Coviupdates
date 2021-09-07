@@ -104,7 +104,6 @@ class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMix
                       GestureDetector(
                         // elevation: 10,
                         onTap: (){
-                          //print('pressed');
                           Navigator.pushNamed(context, TypeVaccines.id);
                         },
                         child: Container(
