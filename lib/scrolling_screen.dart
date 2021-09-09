@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'vaccinesType.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'drawer.dart';
 
 const colorizeColors = [
   Color(0xFF283593),
@@ -19,8 +21,7 @@ const colorizeTextStyle = TextStyle(
   fontFamily: 'Horizon',
 );
 
-String regristration="https://selfregistration.cowin.gov.in/";
-
+String regristration = "https://selfregistration.cowin.gov.in/";
 
 Future<void> _launchedInBrowser(String url) async {
   if (await canLaunch(url)) {
@@ -34,52 +35,126 @@ Future<void> _launchedInBrowser(String url) async {
 }
 
 class Scrolling extends StatefulWidget {
-  static String id='Scrolling';
+  static String id = 'Scrolling';
   const Scrolling({Key? key}) : super(key: key);
 
   @override
   _ScrollingState createState() => _ScrollingState();
 }
 
-class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMixin {
-
+class _ScrollingState extends State<Scrolling>
+    with SingleTickerProviderStateMixin {
   late final Animation animation;
   late AnimationController controller;
   @override
   void initState() {
     super.initState();
-    controller=AnimationController(vsync: this,
-    duration: Duration(seconds: 1),);
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
     controller.forward();
-    animation=ColorTween(begin: Color(0xFF01579B),end: Color(0xFFB3E5FC)).animate(controller);
+    animation = ColorTween(begin: Color(0xFF01579B), end: Color(0xFFB3E5FC))
+        .animate(controller);
     controller.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  animation.value,
+      backgroundColor: animation.value,
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Developer.id);
+                },
+                child: Container(
+                  color: Color(0xFF1A237E),
+                  child: Row(
+                    children: [
+                      RawMaterialButton(
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.forward,
+                          size: 40,
+                        ),
+                      ),
+                      Text(
+                        'Developer',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 40,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 4,
+                child: Container(
+                  color: Color(0xFF1A237E),
+                )),
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xFF4FC3F7),
+      ),
       body: Column(
         children: <Widget>[
-          Expanded(child: Container(
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(5, 60, 0, 0),
-              child: AnimatedTextKit(
-                animatedTexts:[
-                  ColorizeAnimatedText(
-                    "Covi-Update's",
-                    textStyle: colorizeTextStyle,
-                    colors: colorizeColors,
+          Expanded(
+              child: Container(
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        ColorizeAnimatedText(
+                          "Covi-Update's",
+                          textStyle: colorizeTextStyle,
+                          colors: colorizeColors,
+                        ),
+                      ],
+                      isRepeatingAnimation: true,
+                      onTap: () {},
+                    ),
                   ),
-                ],
-                isRepeatingAnimation: true,
-                onTap: (){},
-              ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: CarouselSlider(
+                      items: [
+                        Image.asset("images/doc1.jpg"),
+                        Image.asset("images/doc2.jpg"),
+                        // Image.asset("images/doc3.jpg"),
+                        Image.asset("images/doc4.jpg"),
+                        //Image.asset("images/doc5.jpg"),
+                        Image.asset("images/doc6.jpg"),
+                        Image.asset("images/doc7.jpg"),
+                        Image.asset("images/doc8.jpg"),
+                        Image.asset("images/doc9.jpg"),
+                        Image.asset("images/doc10.jpg"),
+                      ],
+                      options: CarouselOptions(
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: true,
+                        autoPlay: true,
+                      )),
+                ),
+              ],
             ),
             decoration: BoxDecoration(
               color: Color(0xFF4FC3F7),
@@ -87,6 +162,7 @@ class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMix
             ),
             width: double.infinity,
           )),
+          //-----------------------------------------------------
           Expanded(
               child: Column(
             children: <Widget>[
@@ -103,7 +179,7 @@ class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMix
                     children: <Widget>[
                       GestureDetector(
                         // elevation: 10,
-                        onTap: (){
+                        onTap: () {
                           Navigator.pushNamed(context, TypeVaccines.id);
                         },
                         child: Container(
@@ -135,7 +211,7 @@ class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMix
                       ),
                       GestureDetector(
                         //elevation: 10,
-                        onTap: (){
+                        onTap: () {
                           Navigator.pushNamed(context, Api.id);
                         },
                         child: Container(
@@ -169,7 +245,7 @@ class _ScrollingState extends State<Scrolling> with SingleTickerProviderStateMix
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           _launchedInBrowser(regristration);
                         },
                         child: Container(

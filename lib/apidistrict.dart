@@ -13,7 +13,7 @@ List<String> districtnameList = [];
 Map<String,int> mapNameID={};
 List<int> districtIDList = [];
 var districtpinkey ;
-late String tempdistrictname;
+late String tempdistrictname=districtnameList[0];
 late String selectedDistrict = districtnameList[0];
 
 class ApiDistrict extends StatefulWidget {
@@ -43,8 +43,6 @@ class _ApiDistrictState extends State<ApiDistrict> {
         districtnameList.add(name);
         districtIDList.add(idDistrict);
         mapNameID[districtnameList[i]]=districtIDList[i];
-       // print(mapNameID[districtnameList[i]]);
-      //  mapNameID[districtIDList[i]] = districtnameList[i];
       }//districts[1].district_name districts[1].district_id
       print(districtnameList);
       print(districtIDList);
@@ -92,10 +90,10 @@ class _ApiDistrictState extends State<ApiDistrict> {
                     flex: 2,
                     child: Container(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 60, 0, 0),
-                        child: Text(
-                          tempStateName,
-                          style: TextStyle(
+                        padding: const EdgeInsets.fromLTRB(10, 60, 0, 0),
+                        child: TypewriterAnimatedTextKit(
+                          text: [tempStateName],
+                          textStyle: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF283593),
@@ -103,6 +101,14 @@ class _ApiDistrictState extends State<ApiDistrict> {
                         ),
                       ),
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 6,
+                            blurRadius: 15,
+                            offset: Offset(0, 3),
+                          )
+                        ],
                         borderRadius: BorderRadius.circular(40),
                         color: Color(0xFF4FC3F7),
                       ),
@@ -134,36 +140,22 @@ class _ApiDistrictState extends State<ApiDistrict> {
                             ),
                           ),
                           Expanded(
-                            flex: 3,
+                            flex: 1,
                             child: Column(
                               children: [
                                 Center(
                                   child: DropdownButton<String>(
                                     value: districtnameList[0],
                                     items: getDropDownListDistricts(),
-                                    //-----------------------------------------
                                     onChanged: (value) {
-                                      /*for (int i = 0;
-                                      i < dataDistric.length;
-                                      i++) {
-                                        if (value == mapNameID[i]) {
-                                          var k=districtnameList[i].toString();
-                                          districtpinkey=mapNameID[k];
-                                          break;
-                                        }
-                                      }*/
-                                      selectedDistrict = value.toString();
+                                      setState(() {
+                                        selectedDistrict = value.toString();
+                                      });
                                       tempdistrictname = selectedDistrict;
                                       districtpinkey=mapNameID["$tempdistrictname"];
                                       print(districtpinkey);
                                     },
                                   ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                  ),
-
                                 ),
                               ],
                             ),
@@ -171,40 +163,6 @@ class _ApiDistrictState extends State<ApiDistrict> {
                         ],
                       ),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Color(0xFF80D8FF),
-                      ),
-                      height: 250,
-                      width: double.infinity,
-                      margin: EdgeInsets.all(25),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      width: double.infinity,
-                      child: GestureDetector(
-                        child: Center(
-                          child: Text("SUBMIT",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                          ),),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            print('district pin key $districtpinkey');
-                          });
-                          Navigator.pushNamed(
-                              context, DisplayScreen.id);
-                        },
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Color(0xFF4FC3F7),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
@@ -213,7 +171,45 @@ class _ApiDistrictState extends State<ApiDistrict> {
                             offset: Offset(0, 3),
                           )
                         ],
+                        borderRadius: BorderRadius.circular(30),
+                        color: Color(0xFF80D8FF),
                       ),
+                      height: 250,
+                      width: double.infinity,
+                      margin: EdgeInsets.all(25),
+                    ),
+                  ),
+                  Container(
+                    width: 170,
+                    height: 100,
+                    margin: EdgeInsets.all(29),
+                    child: GestureDetector(
+                      child: Center(
+                        child: Text("SUBMIT",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          print('district pin key $districtpinkey');
+                        });
+                        Navigator.pushNamed(
+                            context, DisplayScreen.id);
+                      },
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.red,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 6,
+                          blurRadius: 15,
+                          offset: Offset(0, 3),
+                        )
+                      ],
                     ),
                   ),
                 ],

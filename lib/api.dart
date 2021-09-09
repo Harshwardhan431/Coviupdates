@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'upiconstants.dart';
 import 'apidistrict.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const urlState = "https://cdn-api.co-vin.in/api/v2/admin/location/states";
 String selected = 'Andaman and Nicobar Islands';
 int statekeypin = 0;
-late String tempStateName;
+late String tempStateName=stateListText[0];
 
 class Api extends StatefulWidget {
   static String id = 'Api';
@@ -58,9 +59,9 @@ class _ApiState extends State<Api> {
             child: Container(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(5, 60, 0, 0),
-                child: Text(
-                  'Slot Avaliability',
-                  style: TextStyle(
+                child: TypewriterAnimatedTextKit(
+                  text: ['Slot Avaliability'],
+                  textStyle: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF283593),
@@ -122,7 +123,9 @@ class _ApiState extends State<Api> {
                               break;
                             }
                           }
-                          selected = value.toString();
+                          setState(() {
+                            selected = value.toString();
+                          });
                           tempStateName = selected;
                         },
                       ),
@@ -133,32 +136,6 @@ class _ApiState extends State<Api> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Color(0xFF80D8FF),
-              ),
-              height: 250,
-              width: double.infinity,
-              margin: EdgeInsets.all(25),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: InkWell(
-                child: Center(
-                  child: Text("SUBMIT",
-                  style: TextStyle(
-                    color: Color(0xFFF000000),
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                ),
-                onTap: () => Navigator.pushNamed(context, ApiDistrict.id),
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Color(0xFFF44336),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -168,8 +145,41 @@ class _ApiState extends State<Api> {
                   )
                 ],
               ),
+              height: 250,
               width: double.infinity,
+              margin: EdgeInsets.all(25),
             ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            child: InkWell(
+              child: Center(
+                child: Text("SUBMIT",
+                style: TextStyle(
+                  color: Color(0xFFF000000),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              onTap: () => Navigator.pushNamed(context, ApiDistrict.id),
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Color(0xFFF44336),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 6,
+                  blurRadius: 15,
+                  offset: Offset(0, 3),
+                )
+              ],
+            ),
+            width: 170,
+            height: 100,
+            margin: EdgeInsets.all(29),
           ),
         ],
       ),
