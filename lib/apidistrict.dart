@@ -130,7 +130,7 @@ class _ApiDistrictState extends State<ApiDistrict> {
                               child: Text(
                                 'Select Distict',
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: Color(0xFF283593),
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                 ),

@@ -51,7 +51,7 @@ class _DeveloperState extends State<Developer> {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 60,
-                    backgroundImage: AssetImage('images/harsh.JPG'),
+                    backgroundImage: AssetImage('images/harsh.JPG.JPG'),
                   ),
                   SizedBox(height: 20,),
                   Column(

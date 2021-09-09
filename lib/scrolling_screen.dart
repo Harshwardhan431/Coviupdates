@@ -139,9 +139,9 @@ class _ScrollingState extends State<Scrolling>
                       items: [
                         Image.asset("images/doc1.jpg"),
                         Image.asset("images/doc2.jpg"),
-                        // Image.asset("images/doc3.jpg"),
+                         Image.asset("images/doc3.jpg"),
                         Image.asset("images/doc4.jpg"),
-                        //Image.asset("images/doc5.jpg"),
+                        Image.asset("images/doc5.jpg"),
                         Image.asset("images/doc6.jpg"),
                         Image.asset("images/doc7.jpg"),
                         Image.asset("images/doc8.jpg"),
