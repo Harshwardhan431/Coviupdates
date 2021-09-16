@@ -150,10 +150,10 @@ class _ApiDistrictState extends State<ApiDistrict> {
                                     onChanged: (value) {
                                       setState(() {
                                         selectedDistrict = value.toString();
-                                      });
                                       tempdistrictname = selectedDistrict;
                                       districtpinkey=mapNameID["$tempdistrictname"];
                                       print(districtpinkey);
+                                      });
                                     },
                                   ),
                                 ),

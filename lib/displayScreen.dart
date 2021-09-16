@@ -5,7 +5,8 @@ import 'dart:convert' as convert;
 import 'apidistrict.dart';
 import 'api.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-//import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 
 var dispkkkl;
@@ -24,7 +25,14 @@ const printeddetail = TextStyle(
 
 const urlslotaval =
     "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id";
-String date = "31-03-2021";
+//String date = "31-03-2021";
+//2021-09-16
+//16-09-2021
+DateTime now=DateTime.now();
+var month=now.month;
+var day=now.day;
+var year=now.year;
+var date="$day-$month-$year";
 //mm-dd-yyyy
 class DisplayScreen extends StatefulWidget {
   static String id = 'DisplayScreen';
@@ -68,6 +76,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
       print('errrrrrrr');
     }
     print("At end of get slots");
+    print('date = $date');
     return 1;
   }
 

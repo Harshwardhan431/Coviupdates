@@ -7,24 +7,33 @@ import 'api.dart';
 import 'displayScreen.dart';
 import 'apidistrict.dart';
 import 'drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:coviupdate/screens/login.dart';
+import 'package:coviupdate/screens/regrister.dart';
+import 'drawermain.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+Future isLoggedIn()async{
+  FirebaseAuth.instance.currentUser!;
+}
+
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Scrolling.id,
+      debugShowCheckedModeBanner: false,
+      initialRoute: Login.id,
       routes: {
+        SignUp.id: (context)=>SignUp(),
+        Login.id: (context)=>Login(),
         Scrolling.id: (context)=> Scrolling(),
         TypeVaccines.id: (context)=>TypeVaccines(),
         News.id: (context)=>News(),
@@ -32,7 +41,9 @@ class _MyAppState extends State<MyApp> {
         Developer.id:(context)=>Developer(),
         ApiDistrict.id:(context)=>ApiDistrict(),
         DisplayScreen.id:(context)=>DisplayScreen(),
+        MainDrawe.id:(context)=>MainDrawe(),
       },
     );
   }
 }
+

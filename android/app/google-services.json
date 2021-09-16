@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134667258147",
+    "project_id": "coviupdate-1c577",
+    "storage_bucket": "coviupdate-1c577.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134667258147:android:80d2f9d20e81d76bdde496",
+        "android_client_info": {
+          "package_name": "com.example.coviupdate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134667258147-0a29133jhjsa1oulog69pucqt18lenjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq66HyYsLLixW_yzvVsT1lUy-72BzFYJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134667258147-0a29133jhjsa1oulog69pucqt18lenjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

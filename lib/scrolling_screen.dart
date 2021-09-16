@@ -1,5 +1,7 @@
 import 'package:coviupdate/api.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:coviupdate/drawermain.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'displayScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,8 @@ import 'vaccinesType.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'drawermain.dart';
 
 const colorizeColors = [
   Color(0xFF283593),
@@ -44,6 +48,9 @@ class Scrolling extends StatefulWidget {
 
 class _ScrollingState extends State<Scrolling>
     with SingleTickerProviderStateMixin {
+  FirebaseAuth auth=FirebaseAuth.instance;
+  late String uid=auth.currentUser!.uid.toString();
+  late String email=auth.currentUser!.email.toString();
   late final Animation animation;
   late AnimationController controller;
   @override
@@ -63,225 +70,188 @@ class _ScrollingState extends State<Scrolling>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: animation.value,
-      drawer: Drawer(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, Developer.id);
-                },
-                child: Container(
-                  color: Color(0xFF1A237E),
-                  child: Row(
-                    children: [
-                      RawMaterialButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.forward,
-                          size: 40,
-                        ),
-                      ),
-                      Text(
-                        'Developer',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 40,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-                flex: 4,
-                child: Container(
-                  color: Color(0xFF1A237E),
-                )),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: animation.value,
+        drawer: MainDrawe(),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFF4FC3F7),
         ),
-      ),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xFF4FC3F7),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-              child: Container(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        ColorizeAnimatedText(
-                          "Covi-Update's",
-                          textStyle: colorizeTextStyle,
-                          colors: colorizeColors,
-                        ),
-                      ],
-                      isRepeatingAnimation: true,
-                      onTap: () {},
+        body: Column(
+          children: <Widget>[
+            Expanded(
+                child: Container(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          ColorizeAnimatedText(
+                            "Covi-Update's",
+                            textStyle: colorizeTextStyle,
+                            colors: colorizeColors,
+                          ),
+                        ],
+                        isRepeatingAnimation: true,
+                        onTap: () {},
+                      ),
                     ),
                   ),
+                  Expanded(
+                    flex: 3,
+                    child: CarouselSlider(
+                        items: [
+                          Image.asset("images/doc1.jpg"),
+                          Image.asset("images/doc2.jpg"),
+                           Image.asset("images/doc3.jpg"),
+                          Image.asset("images/doc4.jpg"),
+                          Image.asset("images/doc5.jpg"),
+                          Image.asset("images/doc6.jpg"),
+                          Image.asset("images/doc7.jpg"),
+                          Image.asset("images/doc8.jpg"),
+                          Image.asset("images/doc9.jpg"),
+                          Image.asset("images/doc10.jpg"),
+                        ],
+                        options: CarouselOptions(
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: true,
+                          autoPlay: true,
+                        )),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Color(0xFF4FC3F7),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20)),
+              ),
+              width: double.infinity,
+            )),
+            //-----------------------------------------------------
+            Expanded(
+                child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Divider(
+                    color: Color(0xFF42A5F5),
+                  ),
                 ),
                 Expanded(
-                  flex: 3,
-                  child: CarouselSlider(
-                      items: [
-                        Image.asset("images/doc1.jpg"),
-                        Image.asset("images/doc2.jpg"),
-                         Image.asset("images/doc3.jpg"),
-                        Image.asset("images/doc4.jpg"),
-                        Image.asset("images/doc5.jpg"),
-                        Image.asset("images/doc6.jpg"),
-                        Image.asset("images/doc7.jpg"),
-                        Image.asset("images/doc8.jpg"),
-                        Image.asset("images/doc9.jpg"),
-                        Image.asset("images/doc10.jpg"),
-                      ],
-                      options: CarouselOptions(
-                        enlargeCenterPage: true,
-                        enableInfiniteScroll: true,
-                        autoPlay: true,
-                      )),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Color(0xFF4FC3F7),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            width: double.infinity,
-          )),
-          //-----------------------------------------------------
-          Expanded(
-              child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Divider(
-                  color: Color(0xFF42A5F5),
-                ),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: <Widget>[
-                      GestureDetector(
-                        // elevation: 10,
-                        onTap: () {
-                          Navigator.pushNamed(context, TypeVaccines.id);
-                        },
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              'Vaccine Types',
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                color: Color(0xFF0D47A1),
-                              ),
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 6,
-                                blurRadius: 15,
-                                offset: Offset(0, 3),
-                              )
-                            ],
-                            color: Color(0xFF80D8FF),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          margin: EdgeInsets.all(30.0),
-                          height: 120.0,
-                          width: double.infinity,
-                        ),
-                      ),
-                      GestureDetector(
-                        //elevation: 10,
-                        onTap: () {
-                          Navigator.pushNamed(context, Api.id);
-                        },
-                        child: Container(
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: <Widget>[
+                        GestureDetector(
+                          // elevation: 10,
+                          onTap: () {
+                            Navigator.pushNamed(context, TypeVaccines.id);
+                          },
+                          child: Container(
+                            child: Center(
                               child: Text(
-                                'Slot Avaliability',
+                                'Vaccine Types',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  color: Color(0xFF01579B),
+                                  fontSize: 25.0,
+                                  color: Color(0xFF0D47A1),
                                 ),
                               ),
                             ),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 6,
+                                  blurRadius: 15,
+                                  offset: Offset(0, 3),
+                                )
+                              ],
+                              color: Color(0xFF80D8FF),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            margin: EdgeInsets.all(30.0),
+                            height: 120.0,
+                            width: double.infinity,
                           ),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 6,
-                                blurRadius: 15,
-                                offset: Offset(0, 3),
-                              )
-                            ],
-                            color: Color(0xFF80D8FF),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          margin: EdgeInsets.all(30.0),
-                          height: 120.0,
-                          width: double.infinity,
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          _launchedInBrowser(regristration);
-                        },
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              'Regristration',
-                              style: TextStyle(
-                                color: Color(0xFF01579B),
-                                fontSize: 20,
+                        GestureDetector(
+                          //elevation: 10,
+                          onTap: () {
+                            Navigator.pushNamed(context, Api.id);
+                          },
+                          child: Container(
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Slot Avaliability',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Color(0xFF01579B),
+                                  ),
+                                ),
                               ),
                             ),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 6,
+                                  blurRadius: 15,
+                                  offset: Offset(0, 3),
+                                )
+                              ],
+                              color: Color(0xFF80D8FF),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            margin: EdgeInsets.all(30.0),
+                            height: 120.0,
+                            width: double.infinity,
                           ),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 6,
-                                blurRadius: 15,
-                                offset: Offset(0, 3),
-                              )
-                            ],
-                            color: Color(0xFF80D8FF),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          margin: EdgeInsets.all(30.0),
-                          height: 120.0,
-                          width: double.infinity,
                         ),
-                      ),
-                    ],
+                        GestureDetector(
+                          onTap: () {
+                            _launchedInBrowser(regristration);
+                          },
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                'Regristration',
+                                style: TextStyle(
+                                  color: Color(0xFF01579B),
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 6,
+                                  blurRadius: 15,
+                                  offset: Offset(0, 3),
+                                )
+                              ],
+                              color: Color(0xFF80D8FF),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            margin: EdgeInsets.all(30.0),
+                            height: 120.0,
+                            width: double.infinity,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ))
-        ],
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }
