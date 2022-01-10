@@ -4,5 +4,8 @@
 
 ### Login Page
 
-<img src="https://user-images.githubusercontent.com/81025973/148761295-de145d9c-a123-4a00-aa2a-7a8b2d7eb653.jpeg" width=500 heigth=500>
+<img src="https://user-images.githubusercontent.com/81025973/148761295-de145d9c-a123-4a00-aa2a-7a8b2d7eb653.jpeg" width=500 heigth=300>
 
+### SignUp Page 
+
+<img src="https://user-images.githubusercontent.com/81025973/148762934-e8106035-f3e9-4a8d-aba4-8b1cc9860856.jpeg" width=500 heigth=300>
