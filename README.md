@@ -18,5 +18,13 @@
 <img src="https://user-images.githubusercontent.com/81025973/148764602-54292f21-0860-41cd-86d5-6af026c27a02.jpeg" width=300 heigth=150> &nbsp;
 <img src="https://user-images.githubusercontent.com/81025973/148764700-47f5366d-a687-4ec2-b87e-c5b275b4189c.jpeg" width=300 heigth=150> &nbsp;
 
+### Vaccine Types Section
+
+<img src="https://user-images.githubusercontent.com/81025973/148764887-be53e9f3-7a6f-4428-a50f-ec9f43429ccf.jpeg" width=300 heigth=150> &nbsp;
+
+### Developer's Section
+
+<img src="https://user-images.githubusercontent.com/81025973/148764998-d6666272-1522-41ae-bae5-914fa72c3e87.jpeg" width=300 heigth=150> &nbsp;
+
 
 
