@@ -1,16 +1,3 @@
-# coviupdate
+# Coviupdate
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### This is an android app made using Flutter to spread awareness about covid 19 pandemic .The user can access all the relevant information about slots available for vaccination near his districts. Moreover , users can access all the important information of all the vaccines available in India and he/she can register for vaccination from this app.
