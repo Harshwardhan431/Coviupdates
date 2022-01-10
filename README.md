@@ -4,5 +4,5 @@
 
 ### Login Page
 
-![WhatsApp Image 2022-01-10 at 5 06 42 PM](https://user-images.githubusercontent.com/81025973/148761295-de145d9c-a123-4a00-aa2a-7a8b2d7eb653.jpeg)
+![WhatsApp Image 2022-01-10 at 5 06 42 PM](https://user-images.githubusercontent.com/81025973/148761295-de145d9c-a123-4a00-aa2a-7a8b2d7eb653.jpeg width="200" height="100")
 
